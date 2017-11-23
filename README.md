@@ -6,11 +6,127 @@ This repository gives information about the API to openCPU and the API to save a
 # Metadata API
 API for connection to the database for getting data of the last session to rerun and for saving data to the database.
 
+## GET figure
+
+### Request
+
+`GET /api/v1/interactivegp/:id/:figure_id`
+
+### Response
+
+```
+200 OK
+
+{
+  "figure_id": "String",
+  "type": "timeseries/map",
+  "widgets": [
+      {
+          "type": "slider",
+          "default_value": "numeric",
+          "min_value": "numeric",
+          "max_value": "numeric",
+          "param_name": "String",
+          "steps_size": "numeric",
+          "description": "String"
+      }
+  ],
+  "original": "path/to/original/image",
+  "endpoint": "openCPU/link/for/function",
+  "results": [
+      {
+          "session_id": "String",
+          "param_values": {
+              "x": "numeric",
+              "y": "numeric" 
+          },
+          "graphic": "link/to/the/resulting/image",
+          "object": "Object"
+          "endpoints": []
+      }
+  ]
+}
+```
+
+### URL parameters for figure
+
+- `id` - if of the compendium in which a manipulation with interactive figures has been made
+- `figure_id` - id of the figure that has been manipulated
+
+## POST figure
+
+### Request
+
+`POST /api/v1/interactivegp`
+
+input of request-body
+```
+{
+  "id": "compendium_id",
+  "figure": "figure_id",
+  "data": {
+    "figure_id": "String",
+    "type": "timeseries/map",
+    "widgets": [
+        {
+            "type": "slider",
+            "default_value": "numeric",
+            "min_value": "numeric",
+            "max_value": "numeric",
+            "param_name": "String", //name of the parameter in R function
+            "steps_size": "numeric",
+            "description": "String" //caption of the slider
+        }
+    ],
+    "original": "path/to/original/image",
+    "endpoint": "openCPU/link/for/function",
+    "results": [
+        {
+            "session_id": "String",
+            "param_values": {
+                "x": "numeric",
+                "y": "numeric" 
+            },
+            "graphic": "link/to/the/resulting/image",
+            "object": "Object",
+            "endpoints": []
+        }
+    ]
+  }
+}
+```
+
+### Request body properties
+- `data` - object of figure data
+  - `figure_id` - id of the figure that was manipulated
+  - `type` - type of figure
+  - `widgets` - type of interaction possibilities
+    - `type` - type of the widget
+    - `default_value` - default value of the widget
+    - `min_value` - minimum value of the widget
+    - `max_value` - maximum value of the widget
+    - `param_name` - name of the parameter in R function
+    - `steps_size` - 
+    - `description` - caption of the widget
+  - `original` - original path of the image
+  - `endpoint` - openCPU link for the figure/computation
+  - `results` - see save session
+
+### Response
+
+```
+201 CREATED
+
+{
+  "id": "figure_id",
+}
+```
+
 ## GET session
 
 ### Request
 
-`GET /api/v1/interactivegp/:id/metadata/:figure_id/:session_id`
+`GET /api/v1/interactivegp/:id/:figure_id/:session_id`
 
 ### Response
 
@@ -21,7 +137,12 @@ API for connection to the database for getting data of the last session to rerun
   "session_id": "String",
   "param_values": { //name & values of parameters sent to openCPU, resulting in this result
       "x": "numeric",
-      "y": "numeric" 
+      "y": "numeric",
+  "graphic": "link/to/the/resulting/image", //optional
+  "object": "Object", //optional; returned object from openCPU (.val)
+  "endpoints": [
+      //all links to the results of the execution of the script
+  ]
 }
 ```
 
@@ -31,26 +152,39 @@ API for connection to the database for getting data of the last session to rerun
 - `figure_id` - id of the figure that has been manipulated
 - `session_id` - id of the session to identify this special manipulation
 
-## SAVE session
+## POST session
 
 ### Request
 
-`POST /api/v1/interactivegp/:id/metadata/:figure_id`
+`POST /api/v1/interactivegp`
 
 input of request-body
 ```
 {
-  "param_values": {
-      "x": "numeric",
-      "y": "numeric" 
+  "id": "compendium_id",
+  "figure": "figure_id",
+  "data": {
+    "session": "session_id",
+    "param_values": {
+        "x": "numeric",
+        "y": "numeric" 
+    "graphic": "link/to/the/resulting/image",
+    "object": "Object",
+    "endpoints": []
+  }
 }
 ```
 
 ### Request body properties
 
-- `param_values` - parameters that can be manipulated in an interactive figure
-- `x` - for example the x-Axis of a timeseries plot
-- `y` - for example the y-Axis of a timeseries plot
+- `data` - object of session data
+  - `session` - id of session, provided by openCPU
+  - `param_values` - parameters that can be manipulated in an interactive figure
+    - `x` - for example the x-Axis of a timeseries plot
+    - `y` - for example the y-Axis of a timeseries plot
+  - `graphic` - (optional) link to the resulting image
+  - `object` - (optional) returned object from openCPU (.val)
+  - `endpoints` - array of links to the results of the execution of the script
 
 ### Response
 
@@ -58,7 +192,7 @@ input of request-body
 201 CREATED
 
 {
-  "id": "String",
+  "id": "session_id",
 }
 ```
 
@@ -85,6 +219,6 @@ where there is no changing funtionality compared to the [openCPU API page](https
 
 ### Response
 
-´´´
-  list of libraries provided by openCPU
-´´´
+```
+  list of libraries provided by openCPU
+```
