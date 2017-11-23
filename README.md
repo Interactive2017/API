@@ -132,17 +132,34 @@ input of request-body
 
 ```
 200 OK
-
 {
-  "session_id": "String",
-  "param_values": { //name & values of parameters sent to openCPU, resulting in this result
-      "x": "numeric",
-      "y": "numeric",
-  "graphic": "link/to/the/resulting/image", //optional
-  "object": "Object", //optional; returned object from openCPU (.val)
-  "endpoints": [
-      //all links to the results of the execution of the script
-  ]
+  "figureData": {
+      "figure_id": "String",
+      "type": "timeseries/map",
+      "widgets": [
+          {
+              "type": "slider",
+              "default_value": "numeric",
+              "min_value": "numeric",
+              "max_value": "numeric",
+              "param_name": "String",
+              "steps_size": "numeric",
+              "description": "String"
+          }
+      ],
+      "original": "path/to/original/image",
+      "endpoint": "openCPU/link/for/function"
+  }
+  "sessionData": {
+      "session_id": "session_id",
+      "param_values": {
+          "x": "numeric",
+          "y": "numeric" 
+      },
+      "graphic": "link/to/the/resulting/image",
+      "object": "Object"
+      "endpoints": []
+  }
 }
 ```
 
