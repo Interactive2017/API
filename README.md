@@ -15,7 +15,7 @@ Request parameter
 - `functionName` - name of R package function that shall be calculated
 
 This request will pass the URL `localhost/api/v1/ocpu/*` to the openCPU endpoint `localhost/ocpu/*`.
-The id of the ERC has to be provided by the user. Then openCPU will run the R script of the package (that has the same name), to calculate the original data of the package. This original data will be saved to the metadata of the given ERC.
+The id of the ERC has to be provided by the user. Then openCPU will run the R script of the package (that has the same name), to calculate the result of the R function with the provided parameter. The original data, used in the paper will be saved to the metadata of the given ERC.
 
 ## Example:
 
