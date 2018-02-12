@@ -39,7 +39,14 @@ Response after running openCPU
 ```json
 {
  ...
- "data": "/ocpu/tmp/x07acffa77a/R/run\n/ocpu/tmp/x07acffa77a/R/.val\n/ocpu/tmp/x07acffa77a/graphics/1\n/ocpu/tmp/x07acffa77a/stdout\n/ocpu/tmp/x07acffa77a/source\n/ocpu/tmp/x07acffa77a/console\n/ocpu/tmp/x07acffa77a/info\n/ocpu/tmp/x07acffa77a/files/DESCRIPTION\n"
+ "data": "/ocpu/tmp/x07acffa77a/R/run
+ /ocpu/tmp/x07acffa77a/R/.val
+ /ocpu/tmp/x07acffa77a/graphics/1
+ /ocpu/tmp/x07acffa77a/stdout
+ /ocpu/tmp/x07acffa77a/source
+ /ocpu/tmp/x07acffa77a/console
+ /ocpu/tmp/x07acffa77a/info
+ /ocpu/tmp/x07acffa77a/files/DESCRIPTION"
  ...
 }
 ```
@@ -67,7 +74,15 @@ Response after running openCPU
 ```json
 {
  ...
- "data": "/ocpu/tmp/x05b16d5b4d/R/run2\n/ocpu/tmp/x05b16d5b4d/R/.val\n/ocpu/tmp/x05b16d5b4d/graphics/1\n/ocpu/tmp/x05b16d5b4d/stdout\n/ocpu/tmp/x05b16d5b4d/source\n/ocpu/tmp/x05b16d5b4d/console\n/ocpu/tmp/x05b16d5b4d/info\n/ocpu/tmp/x05b16d5b4d/files/DESCRIPTION\n/ocpu/tmp/x05b16d5b4d/files/figure1.Rdata\n"
+ "data": "/ocpu/tmp/x05b16d5b4d/R/run2
+ /ocpu/tmp/x05b16d5b4d/R/.val
+ /ocpu/tmp/x05b16d5b4d/graphics/1
+ /ocpu/tmp/x05b16d5b4d/stdout
+ /ocpu/tmp/x05b16d5b4d/source
+ /ocpu/tmp/x05b16d5b4d/console
+ /ocpu/tmp/x05b16d5b4d/info
+ /ocpu/tmp/x05b16d5b4d/files/DESCRIPTION
+ /ocpu/tmp/x05b16d5b4d/files/figure1.Rdata"
  ...
 }
 ```
