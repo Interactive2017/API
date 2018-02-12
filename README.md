@@ -7,11 +7,12 @@ Additional Information can be found [here](https://www.opencpu.org/api.html) at 
 
 ## Run script
 
-`POST /api/v1/ocpu/library/:id/R/run*`
+`POST /api/v1/ocpu/library/:id/R/:functionName*`
 
 Request parameter
 
 - `id` - id of the ERC
+- `functionName` - name of R package function that shall be calculated
 
 This request will pass the URL `localhost/api/v1/ocpu/*` to the openCPU endpoint `localhost/ocpu/*`.
 The id of the ERC has to be provided by the user. Then openCPU will run the R script of the package (that has the same name), to calculate the original data of the package. This original data will be saved to the metadata of the given ERC.
@@ -20,7 +21,7 @@ The id of the ERC has to be provided by the user. Then openCPU will run the R sc
 
 ### Request (for timeseries)
 
-`POST /api/v1/ocpu/library/t5UH3/R/run`
+`POST /api/v1/ocpu/library/t5UH3/R/tsfunction`
 
 Request body parameters for executing R script
 
@@ -55,7 +56,7 @@ Response after running openCPU
 
 ### Request (for maps)
 
-`POST /api/v1/ocpu/library/z5jF9/R/run`
+`POST /api/v1/ocpu/library/z5jF9/R/mapfunction`
 
 Request body parameters for executing R script
 
